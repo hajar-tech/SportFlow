@@ -18,7 +18,9 @@
                <a href="#login" class="hover:underline">Sign In</a>
            </div>
        </nav>
-<section class="flex items-center justify-center min-h-screen bg-gray-100">
+
+
+      <section class="flex items-center justify-center min-h-screen bg-gray-100">
        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
            <h2 class="text-2xl font-bold text-center mb-4">Inscription</h2>
            <form action="register" method="post" class="space-y-4">

@@ -32,6 +32,9 @@
                 <p class="text-center mt-4">Pas de compte ? <a href="registration.jsp" class="text-blue-500 hover:underline">Inscrivez-vous</a></p>
             </div>
         </section>
+        <form action="register" method="post">
+            <input type="submit" value="Inscrire un utilisateur">
+        </form>
 
     <!-- Footer -->
     <footer id="contact" class="bg-gray-800 text-white text-center p-4">
