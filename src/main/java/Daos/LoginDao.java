@@ -9,10 +9,10 @@ import java.sql.SQLException;
 
 public class LoginDao {
 
-    public User checkUser(String email , String password){
+    public static User checkUser(String email , String password){
         User user = null;
 
-        String sql = "select (idUser , fullName,role) from Users where email = ? and password = ?";
+        String sql = "select idUser , fullName , role from Users where email = ? and password = ?";
         try {
             Connection connection = DataBaseConnection.getConnection();
             PreparedStatement pst = connection.prepareStatement(sql);

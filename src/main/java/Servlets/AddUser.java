@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 
 
 import java.io.IOException;
@@ -39,10 +39,13 @@ public class AddUser extends HttpServlet {
         user.setRole(role);
         UserDao userDao = new UserDao();
         int id=userDao.insertUser(user, dateOfBirth,sportPratique,speciality);
+        HttpSession session = req.getSession();
       if(id > 0){
+          session.setAttribute("error","user added successflly");
           System.out.println("user add with success");
           resp.sendRedirect("index.jsp");
       } else {
+          session.setAttribute("error","user not added successflly");
           System.out.println("failed to add User");
           resp.sendRedirect("registration.jsp");
       }

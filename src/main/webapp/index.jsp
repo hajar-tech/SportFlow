@@ -24,7 +24,7 @@
     <section id="login" class="flex items-center justify-center min-h-screen">
             <div class="bg-white p-6 rounded-lg shadow-lg w-96">
                 <h2 class="text-2xl font-bold text-center mb-4">Connexion</h2>
-                <form action="login" method="post" class="space-y-4">
+                <form action="loginCheck" method="post" class="space-y-4">
                     <input type="email" name="email" placeholder="Email" class="w-full p-2 border rounded">
                     <input type="password" name="password" placeholder="Mot de passe" class="w-full p-2 border rounded">
                     <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Se connecter</button>
