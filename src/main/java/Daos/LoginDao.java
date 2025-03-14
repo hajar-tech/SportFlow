@@ -33,4 +33,12 @@ public class LoginDao {
         System.out.println(user);
         return user;
     }
+
+    public boolean checkAdmin(String email , String password){
+        boolean admin = false;
+           if ( "admin".equalsIgnoreCase(email) && "admin123".equalsIgnoreCase(password)){
+               admin = true;
+           }
+        return admin;
+    }
 }
