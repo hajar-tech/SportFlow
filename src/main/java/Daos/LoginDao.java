@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class LoginDao {
 
     public static User checkUser(String email , String password){
+
         User user = null;
 
         String sql = "select idUser , fullName , role from Users where email = ? and password = ?";
@@ -36,7 +37,7 @@ public class LoginDao {
 
     public boolean checkAdmin(String email , String password){
         boolean admin = false;
-           if ( "admin".equalsIgnoreCase(email) && "admin123".equalsIgnoreCase(password)){
+           if ( "admin@gmail.com".equalsIgnoreCase(email) && "admin123".equalsIgnoreCase(password)){
                admin = true;
            }
         return admin;

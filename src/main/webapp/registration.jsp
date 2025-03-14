@@ -13,7 +13,7 @@
        <nav class="bg-blue-600 p-4 text-white flex justify-between items-center">
            <a href="index.jsp">  <h1 class="text-2xl font-bold">SportFlow</h1> </a>
            <div class="space-x-4">
-               <a href="#contact" class="hover:underline">Contact Us</a>
+
                <a href="registration.jsp" class="hover:underline">Sign Up</a>
                <a href="#login" class="hover:underline">Sign In</a>
            </div>
@@ -30,7 +30,6 @@
 
                <select name="role" id="role" class="w-full p-2 border rounded" onchange="toggleFields()">
                    <option value="">Sélectionner un rôle</option>
-                   <option value="admin">Admin</option>
                    <option value="member">Membre</option>
                    <option value="coach">Coach</option>
                </select>

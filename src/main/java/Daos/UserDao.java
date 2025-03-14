@@ -56,17 +56,8 @@ public class UserDao {
                }else {
                    System.out.println("failed to add coach");
                }
-           }else {
-               String adminQuery = "insert into admin (idUser) value (?)";
-               PreparedStatement pstAdmin = con.prepareStatement(adminQuery);
-               pstAdmin.setInt(1,idUser);
-               int adminResult = pstAdmin.executeUpdate();
-               if(adminResult > 0){
-                   System.out.println("admin added successfully");
-               }else {
-                   System.out.println("failed to add admin");
-               }
            }
+
 
 
       }catch (SQLException e){
