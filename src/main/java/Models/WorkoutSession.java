@@ -1,58 +1,47 @@
 package Models;
 
-import java.util.Date;
+import java.sql.Time;
+import java.sql.Date;
 
 public class WorkoutSession {
 
-    private int idWorkout;
-    private Date dateWorkout;
-    private String heure;
-    private int idCoach; // Référence à Coach (idUser)
-    private int idUser;  // Référence à Member (idUser)
+
+        private int idSession;
+        private int idCoach;
+        private String sportType;
+        private Date sessionDate;
+        private Time startTime;
+        private Time endTime;  // Référence à Member (idUser)
 
     //constructors
 
     public WorkoutSession(){}
 
-    public WorkoutSession(int idWorkout, Date dateWorkout, String heure, int idCoach, int idUser) {
-        this.idWorkout = idWorkout;
-        this.dateWorkout = dateWorkout;
-        this.heure = heure;
+    public WorkoutSession(int idSession, int idCoach, String sportType, Date sessionDate, Time startTime, Time endTime) {
+        this.idSession = idSession;
         this.idCoach = idCoach;
-        this.idUser = idUser;
+        this.sportType = sportType;
+        this.sessionDate = sessionDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    public WorkoutSession(Date dateWorkout, String heure, int idCoach, int idUser) {
-        this.dateWorkout = dateWorkout;
-        this.heure = heure;
+    public WorkoutSession(int idCoach, String sportType, Date sessionDate, Time startTime, Time endTime) {
         this.idCoach = idCoach;
-        this.idUser = idUser;
+        this.sportType = sportType;
+        this.sessionDate = sessionDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+//getters && setters
+
+
+    public int getIdSession() {
+        return idSession;
     }
 
-    //getters && setters
-
-    public int getIdWorkout() {
-        return idWorkout;
-    }
-
-    public void setIdWorkout(int idWorkout) {
-        this.idWorkout = idWorkout;
-    }
-
-    public Date getDateWorkout() {
-        return dateWorkout;
-    }
-
-    public void setDateWorkout(Date dateWorkout) {
-        this.dateWorkout = dateWorkout;
-    }
-
-    public String getHeure() {
-        return heure;
-    }
-
-    public void setHeure(String heure) {
-        this.heure = heure;
+    public void setIdSession(int idSession) {
+        this.idSession = idSession;
     }
 
     public int getIdCoach() {
@@ -63,11 +52,35 @@ public class WorkoutSession {
         this.idCoach = idCoach;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public String getSportType() {
+        return sportType;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setSportType(String sportType) {
+        this.sportType = sportType;
+    }
+
+    public Date getSessionDate() {
+        return sessionDate;
+    }
+
+    public void setSessionDate(Date sessionDate) {
+        this.sessionDate = sessionDate;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
     }
 }
