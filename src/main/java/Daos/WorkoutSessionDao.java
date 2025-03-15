@@ -14,7 +14,7 @@ public class WorkoutSessionDao {
        try{
            Connection connection = DataBaseConnection.getConnection();
            PreparedStatement pst  = connection.prepareStatement(sql);
-           pst.setInt(1,session.getIdSession());
+           pst.setInt(1,session.getIdCoach());
            pst.setString(2,session.getSportType());
            pst.setDate(3,session.getSessionDate());
            pst.setTime(4,session.getStartTime());

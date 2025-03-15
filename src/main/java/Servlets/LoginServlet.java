@@ -32,6 +32,10 @@ public class LoginServlet extends HttpServlet {
              session.setAttribute("fullName",user.getFullName());
              session.setAttribute("role",user.getRole());
 
+             System.out.println("Session created with ID: " + session.getId());
+             System.out.println("full name: " + user.getFullName());
+             System.out.println("Role: " + user.getRole());
+
              if ("member".equalsIgnoreCase(user.getRole())){
 
                  req.getRequestDispatcher("/memberDashboard.jsp").forward(req, resp);
