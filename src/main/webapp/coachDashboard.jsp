@@ -9,6 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+body {
+  background: linear-gradient(to right, #ff7e5f, #feb47b, #ffcc33);
+}
+</style>
+
+
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -17,7 +24,7 @@
         <div class="space-x-4">
             <a href="#contact" class="hover:underline">Contact Us</a>
             <a href="logout" class="hover:underline">Logout</a>
-            
+
 
         </div>
 </nav>

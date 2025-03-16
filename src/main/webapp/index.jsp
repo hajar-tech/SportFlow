@@ -7,6 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SportFlow - Accueil</title>
+
+    <style>
+    body {
+      background: url('C:\Users\zerho\IdeaProjects\SportFlow\images') no-repeat center center fixed;
+      background-size: cover;
+    }
+    </style>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
