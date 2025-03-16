@@ -2,9 +2,9 @@ package Daos;
 
 import Models.WorkoutSession;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorkoutSessionDao {
     //fonction to create a workoutSession
@@ -30,4 +30,30 @@ public class WorkoutSessionDao {
 
      }
 
+
+     public List DisplaySessionByIdCoach(int idCoach){
+         ArrayList<WorkoutSession> workoutSessions = new ArrayList<>();
+         String sql = "select sportType,sessionDate,startTime,endTime from WorkoutSession where  idCoach = ?";
+         try{
+             Connection connection = DataBaseConnection.getConnection();
+             PreparedStatement pst = connection.prepareStatement(sql);
+             pst.setInt(1,idCoach);
+             ResultSet rs = pst.executeQuery();
+             while (rs.next()){
+                 WorkoutSession workoutSession = new WorkoutSession();
+                 workoutSession.setSportType(rs.getString("sportType"));
+                 workoutSession.setSessionDate(rs.getDate("sessionDate"));
+                 workoutSession.setStartTime(rs.getTime("startTime"));
+                 workoutSession.setEndTime(rs.getTime("endTine"));
+
+                 workoutSessions.add(workoutSession);
+             }
+
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+
+          return workoutSessions;
+     }
 }
+
