@@ -31,29 +31,117 @@ public class WorkoutSessionDao {
      }
 
 
-     public List DisplaySessionByIdCoach(int idCoach){
-         ArrayList<WorkoutSession> workoutSessions = new ArrayList<>();
-         String sql = "select sportType,sessionDate,startTime,endTime from WorkoutSession where  idCoach = ?";
-         try{
-             Connection connection = DataBaseConnection.getConnection();
-             PreparedStatement pst = connection.prepareStatement(sql);
-             pst.setInt(1,idCoach);
-             ResultSet rs = pst.executeQuery();
-             while (rs.next()){
-                 WorkoutSession workoutSession = new WorkoutSession();
-                 workoutSession.setSportType(rs.getString("sportType"));
-                 workoutSession.setSessionDate(rs.getDate("sessionDate"));
-                 workoutSession.setStartTime(rs.getTime("startTime"));
-                 workoutSession.setEndTime(rs.getTime("endTine"));
+    public List<WorkoutSession> getCoachSessionsWithMembers(int idCoach) {
+        List<WorkoutSession> sessions = new ArrayList<>();
+        String sql = "SELECT w.idSession, w.sportType, w.sessionDate, w.startTime, w.endTime, u.fullName AS MemberName " +
+                "FROM WorkoutSession w LEFT JOIN Booking b ON w.idSession = b.idSession " +
+                "LEFT JOIN Users u ON b.idUser = u.idUser WHERE w.idCoach = ?";
 
-                 workoutSessions.add(workoutSession);
-             }
+        try (Connection con = DataBaseConnection.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
 
-         } catch (SQLException e) {
-             e.printStackTrace();
-         }
+            pst.setInt(1, idCoach);
+            ResultSet rs = pst.executeQuery();
 
-          return workoutSessions;
-     }
+            while (rs.next()) {
+                WorkoutSession session = new WorkoutSession(
+                        rs.getInt("idSession"),
+                        rs.getString("sportType"),
+                        rs.getDate("sessionDate"),
+                        rs.getTime("startTime"),
+                        rs.getTime("endTime")
+                );
+                session.setMemberName(rs.getString("MemberName"));
+                sessions.add(session);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sessions;
+    }
+
+
+
+    public List<WorkoutSession> getSessionsByCoach(int idCoach) {
+        List<WorkoutSession> sessions = new ArrayList<>();
+        String sql = "SELECT * FROM WorkoutSession WHERE idCoach = ?";
+
+        try (Connection con = DataBaseConnection.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setInt(1, idCoach);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                sessions.add(new WorkoutSession(
+                        rs.getInt("idCoach"),
+                        rs.getString("sportType"),
+                        rs.getDate("sessionDate"),
+                        rs.getTime("startTime"),
+                        rs.getTime("endTime")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sessions;
+    }
+
+
+    public List<WorkoutSession> getAllSessions() {
+        List<WorkoutSession> sessions = new ArrayList<>();
+        String sql = "SELECT * FROM WorkoutSession";
+
+        try (Connection con = DataBaseConnection.getConnection();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            while (rs.next()) {
+                sessions.add(new WorkoutSession(
+                        rs.getInt("idSession"),
+                        rs.getInt("idCoach"),
+                        rs.getString("sportType"),
+                        rs.getDate("sessionDate"),
+                        rs.getTime("startTime"),
+                        rs.getTime("endTime")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sessions;
+    }
+
+    public List<WorkoutSession> getSessionsByMember(int idUser) {
+        List<WorkoutSession> sessions = new ArrayList<>();
+        String sql = "SELECT w.sportType, w.sessionDate, w.startTime, w.endTime " +
+                "FROM Booking b JOIN WorkoutSession w ON b.idSession = w.idSession " +
+                "WHERE b.idUser = ?";
+
+        try (Connection con = DataBaseConnection.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setInt(1, idUser);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                sessions.add(new WorkoutSession(
+                        rs.getString("sportType"),
+                        rs.getDate("sessionDate"),
+                        rs.getTime("startTime"),
+                        rs.getTime("endTime")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sessions;
+    }
 }
 

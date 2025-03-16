@@ -2,6 +2,8 @@ package Models;
 
 import java.sql.Time;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class WorkoutSession {
 
@@ -11,7 +13,8 @@ public class WorkoutSession {
         private String sportType;
         private Date sessionDate;
         private Time startTime;
-        private Time endTime;  // Référence à Member (idUser)
+        private Time endTime;
+    private String memberName;// Référence à Member (idUser)
 
     //constructors
 
@@ -32,7 +35,26 @@ public class WorkoutSession {
         this.sessionDate = sessionDate;
         this.startTime = startTime;
         this.endTime = endTime;
+
     }
+
+
+    public WorkoutSession(String sportType, Date sessionDate, Time startTime, Time endTime) {
+        this.sportType = sportType;
+        this.sessionDate = sessionDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+
 //getters && setters
 
 

@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
                  req.getRequestDispatcher("/memberDashboard.jsp").forward(req, resp);
              } else if ("coach".equalsIgnoreCase(user.getRole())) {
-                 req.getRequestDispatcher("/coachDashboard.jsp").forward(req, resp);
+                 req.getRequestDispatcher("coachDashboard.jsp").forward(req, resp);
              }else {
                  PrintWriter out = resp.getWriter();
                  out.println("role not defined");
