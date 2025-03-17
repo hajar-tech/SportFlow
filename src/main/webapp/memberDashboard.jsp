@@ -29,32 +29,36 @@
     List<WorkoutSession> sessions = dao.getAllSessions();
 %>
 
-<h2>Séances Disponibles</h2>
-<table border="1">
-    <tr>
-        <th>Coach</th>
-        <th>Sport</th>
-        <th>Date</th>
-        <th>Début</th>
-        <th>Fin</th>
-        <th>Action</th>
-    </tr>
+<h2 class ="m-5 rounded bg-gray-400 hover:bg-blue-500 p-5">Séances Disponibles</h2>
+<ul class="space-y-4">
     <% for (WorkoutSession s : sessions) { %>
-    <tr>
-        <td><%= s.getIdCoach() %></td>
-        <td><%= s.getSportType() %></td>
-        <td><%= s.getSessionDate() %></td>
-        <td><%= s.getStartTime() %></td>
-        <td><%= s.getEndTime() %></td>
-        <td>
-            <form action="BookSessionServlet" method="post">
-                <input type="hidden" name="idSession" value="<%= s.getIdSession() %>">
-                <button type="submit">Réserver</button>
-            </form>
-        </td>
-    </tr>
+    <li class="bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row md:justify-between items-center">
+        <div class="flex flex-col md:flex-row md:items-center md:space-x-6">
+            <div>
+                <span class="font-semibold">Coach :</span> <%= s.getIdCoach() %>
+            </div>
+            <div>
+                <span class="font-semibold">Sport :</span> <%= s.getSportType() %>
+            </div>
+            <div>
+                <span class="font-semibold">Date :</span> <%= s.getSessionDate() %>
+            </div>
+            <div>
+                <span class="font-semibold">Début :</span> <%= s.getStartTime() %>
+            </div>
+            <div>
+                <span class="font-semibold">Fin :</span> <%= s.getEndTime() %>
+            </div>
+        </div>
+        <form action="BookSessionServlet" method="post" class="mt-4 md:mt-0">
+            <input type="hidden" name="idSession" value="<%= s.getIdSession() %>">
+            <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">
+                Réserver
+            </button>
+        </form>
+    </li>
     <% } %>
-</table>
+</ul>
 
 
  </body>
