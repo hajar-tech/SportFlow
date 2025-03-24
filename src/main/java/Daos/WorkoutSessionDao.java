@@ -143,5 +143,27 @@ public class WorkoutSessionDao {
         }
         return sessions;
     }
+
+    public  static int getNombreSeanceParType(String type){
+         int nombre =0;
+
+         String sql ="select count(idSession) as nombreSeance from WorkoutSession where sportType = ?";
+         try{
+             Connection con = DataBaseConnection.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql);
+             pst.setString(1,type);
+             ResultSet rs = pst.executeQuery();
+             if(rs.next()){
+                 nombre = rs.getInt(1);
+             }
+
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+                 return nombre;
+
+
+    }
 }
+
 

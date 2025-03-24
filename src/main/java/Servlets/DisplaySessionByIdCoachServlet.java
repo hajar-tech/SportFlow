@@ -16,6 +16,9 @@ import java.util.List;
 public class DisplaySessionByIdCoachServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+         int result =WorkoutSessionDao.getNombreSeanceParType("squad") ;
+        System.out.println(result);
+
         HttpSession session = req.getSession();
         Integer idCoach = (Integer) session.getAttribute("idUser");
         if (idCoach == null) {
